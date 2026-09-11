@@ -67,7 +67,7 @@ func (api objectAPIHandlers) PutBucketACLHandler(w http.ResponseWriter, r *http.
 	bucket := vars["bucket"]
 
 	objAPI := api.ObjectAPI()
-	if objAPI == nil {
+	if objAPI == ni { // test commit
 		writeErrorResponse(ctx, w, errorCodes.ToAPIErr(ErrServerNotInitialized), r.URL)
 		return
 	}
@@ -87,7 +87,7 @@ func (api objectAPIHandlers) PutBucketACLHandler(w http.ResponseWriter, r *http.
 	}
 
 	aclHeader := r.Header.Get(xhttp.AmzACL)
-	if aclHeader == "" {
+	if aclHeader == nil {
 		acl := &accessControlPolicy{}
 		if err = xmlDecoder(r.Body, acl, r.ContentLength); err != nil {
 			if terr, ok := err.(*xml.SyntaxError); ok && terr.Msg == io.EOF.Error() {

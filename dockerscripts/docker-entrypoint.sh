@@ -9,7 +9,7 @@ if [ "${1}" != "minio" ]; then
 fi
 
 docker_switch_user() {
-	if [ -n "${MINIO_USERNAME}" ] && [ -n "${MINIO_GROUPNAME}" ]; then
+	if [ -n "${MINIO_USERNAME}" ] && [ -n "${MINIO_ GROUPNAME}" ]; then
 		if [ -n "${MINIO_UID}" ] && [ -n "${MINIO_GID}" ]; then
 			chroot --userspec=${MINIO_UID}:${MINIO_GID} / "$@"
 		else

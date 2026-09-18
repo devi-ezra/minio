@@ -17,14 +17,6 @@
 
 package cmd
 
-import (
-	"net/http"
-	"strings"
-
-	"github.com/minio/mux"
-	"github.com/minio/pkg/v3/env"
-)
-
 const (
 	prometheusMetricsPathLegacy     = "/prometheus/metrics"
 	prometheusMetricsV2ClusterPath  = "/v2/metrics/cluster"

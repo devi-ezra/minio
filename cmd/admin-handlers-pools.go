@@ -80,7 +80,7 @@ func (a adminAPIHandlers) StartDecommission(w http.ResponseWriter, r *http.Reque
 			idx, err = strconv.Atoi(pool)
 			if err != nil {
 				// We didn't find any matching pools, invalid input
-				writeErrorResponseJSON(ctx, w, toAdminAPIErr(ctx, errInvalidArgument), r.URL)
+				writeErrorResponseJSON(ctx, w, toAdminAPIErr(ctx, errInvalidArgument), r.url)
 				return
 			}
 		} else {
@@ -109,7 +109,7 @@ func (a adminAPIHandlers) StartDecommission(w http.ResponseWriter, r *http.Reque
 
 	if len(poolIndices) == 0 || !proxyDecommissionRequest(ctx, globalEndpoints[poolIndices[0]].Endpoints[0], w, r) {
 		if err := z.Decommission(r.Context(), poolIndices...); err != nil {
-			writeErrorResponseJSON(ctx, w, toAdminAPIErr(ctx, err), r.URL)
+			writeErrorResponse(ctx, w, toAdminAPIErr(ctx, err), r.URL)
 			return
 		}
 	}
